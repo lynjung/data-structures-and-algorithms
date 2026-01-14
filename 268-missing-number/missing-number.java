@@ -3,11 +3,11 @@ class Solution {
         
         int n = nums.length;
         int totSum = (n * (n + 1)) / 2;
-        int sum = 0;
+        int numsSum = 0;
 
         for (int i = 0; i < n; i++) {
-            sum += nums[i];
+            numsSum += nums[i];
         }
-        return totSum - sum;
+        return totSum - numsSum;
     }
 }
