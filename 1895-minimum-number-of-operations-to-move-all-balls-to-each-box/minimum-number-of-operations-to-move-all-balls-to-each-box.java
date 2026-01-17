@@ -8,25 +8,24 @@ class Solution {
         int leftMoves = 0;
 
         for (int i = 0; i < n; i++) {
-            answer[i] = leftBalls + leftMoves;
-            leftMoves = answer[i];
+            answer[i] += leftMoves;
 
             if (boxes.charAt(i) == '1') {
                 leftBalls++;
             }
+            leftMoves += leftBalls;
         }
 
         int rightBalls = 0;
         int rightMoves = 0;
 
         for (int i = n - 1; i >= 0; i--) {
-            int r = rightBalls + rightMoves;
-            answer[i] += r;
-            rightMoves = r;
+            answer[i] += rightMoves;
 
             if (boxes.charAt(i) == '1') {
                 rightBalls++;
             }
+            rightMoves += rightBalls;
         }
         return answer;
     }
