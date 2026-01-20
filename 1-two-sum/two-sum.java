@@ -4,6 +4,7 @@ class Solution {
         HashMap<Integer, Integer> hashmap = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
+            
             int comp = target - nums[i];
 
             if (hashmap.containsKey(comp)) {
