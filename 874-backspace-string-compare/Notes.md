@@ -1,1 +1,0 @@
-<h2>backspace-string-compare Notes</h2><hr>[ Time taken: 2 hrs 57 m 1 s ]
