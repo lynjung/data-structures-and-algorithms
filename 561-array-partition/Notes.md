@@ -1,1 +1,0 @@
-<h2>array-partition Notes</h2><hr>[ Time taken: 13 m 39 s ]
