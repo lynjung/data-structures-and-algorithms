@@ -1,10 +1,22 @@
 class Solution {
     public int[] sortedSquares(int[] nums) {
         
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] *= nums[i];
+        int[] result = new int[nums.length];
+        int left = 0;
+        int right = nums.length - 1;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int square;
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                square = nums[left] * nums[left];
+                left++;
+            }
+            else {
+                square = nums[right] * nums[right];
+                right--;
+            }
+            result[i] = square;
         }
-        Arrays.sort(nums);
-        return nums;
+        return result;
     }
 }
