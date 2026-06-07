@@ -13,7 +13,7 @@ class Solution {
             return null;
         }
 
-        if (p == root || q == root) {
+        if (root == p || root == q) {
             return root;
         }
 
