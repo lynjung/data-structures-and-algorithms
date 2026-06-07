@@ -3,24 +3,17 @@ class Solution {
         return build(s).equals(build(t));
     }
 
-    private String build(String str) {
-        Stack<Character> stack = new Stack<>();
+    private String build(String s) {
+        StringBuilder stack = new StringBuilder();
 
-        for (char c : str.toCharArray()) {
-            if (c == '#') {
-                if (!stack.isEmpty()) {
-                    stack.pop();
-                }
+        for (char c : s.toCharArray()) {
+            if (c != '#') {
+                stack.append(c);
             }
-            else {
-                stack.push(c);
+            else if (stack.length() > 0) {
+                stack.deleteCharAt(stack.length() - 1);
             }
         }
-
-        StringBuilder sb = new StringBuilder();
-        for (char c : stack) {
-            sb.append(c);
-        }
-        return sb.toString();
+        return stack.toString();
     }
 }
