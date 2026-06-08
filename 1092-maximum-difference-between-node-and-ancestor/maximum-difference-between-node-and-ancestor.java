@@ -15,20 +15,24 @@
  */
 class Solution {
     public int maxAncestorDiff(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
         return dfs(root, root.val, root.val);
     }
 
-    public int dfs(TreeNode node, int min, int max) {
-            if (node == null) {
-                return max - min;
-            }
-
-            min = Math.min(min, node.val);
-            max = Math.max(max, node.val);
-
-            int left = dfs(node.left, min, max);
-            int right = dfs(node.right, min, max);
-
-            return Math.max(left, right);
+    private int dfs(TreeNode node, int max, int min) {
+        // base case
+        if (node == null) { // reached a leaf
+            return max - min;
         }
+
+        max = Math.max(max, node.val);
+        min = Math.min(min, node.val);
+
+        int left = dfs(node.left, max, min);
+        int right = dfs(node.right, max, min);
+        return Math.max(left, right);
+    }
 }
