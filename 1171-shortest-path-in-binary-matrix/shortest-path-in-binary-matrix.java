@@ -22,11 +22,11 @@ class Solution {
         boolean[][] seen = new boolean[n][n];
         seen[0][0] = true;
 
-        Queue<State> queue = new LinkedList<>();
-        queue.add(new State(0, 0, 1));
+        Queue<State> q = new LinkedList<>();
+        q.add(new State(0, 0, 1));
 
-        while (!queue.isEmpty()) {
-            State state = queue.remove();
+        while (!q.isEmpty()) {
+            State state = q.remove();
             int row = state.row, col = state.col, steps = state.steps;
             if (row == n - 1 && col == n - 1) {
                 return steps;
@@ -36,7 +36,7 @@ class Solution {
                 int nextRow = row + direction[0], nextCol = col + direction[1];
                 if (valid(nextRow, nextCol, grid) && !seen[nextRow][nextCol]) {
                     seen[nextRow][nextCol] = true;
-                    queue.add(new State(nextRow, nextCol, steps + 1));
+                    q.add(new State(nextRow, nextCol, steps + 1));
                 }
             }
         }
