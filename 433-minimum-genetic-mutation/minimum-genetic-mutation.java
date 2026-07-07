@@ -36,10 +36,10 @@ class Solution {
                 return steps;
             }
 
-            for (String neighbor : neighbors(gene, bankSet)) {
-                if (!seen.contains(neighbor)) {
-                    seen.add(neighbor);
-                    queue.add(new Pair(neighbor, steps + 1));
+            for (String neigh : neighbors(gene, bankSet)) {
+                if (!seen.contains(neigh)) {
+                    seen.add(neigh);
+                    queue.add(new Pair(neigh, steps + 1));
                 }
             }
         }
