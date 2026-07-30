@@ -35,7 +35,6 @@ class Solution {
         if (0 <= next2 && next2 <= 9 && next1 != next2) {
             int nextNum = curr * 10 + next2;
             backtrack(nextNum, digitsUsed + 1, n, k, ans);
-            curr = (curr - next2) / 10;
         }
     }
 }
