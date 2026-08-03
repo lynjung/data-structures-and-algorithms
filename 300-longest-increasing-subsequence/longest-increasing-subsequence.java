@@ -10,7 +10,7 @@ class Solution {
         return ans;
     }
 
-    private int dp(int i, int[] nums) {
+    public int dp(int i, int[] nums) {
         if (memo.containsKey(i)) {
             return memo.get(i);
         }
