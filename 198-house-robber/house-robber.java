@@ -5,11 +5,10 @@ class Solution {
         return dp(nums.length - 1, nums);
     }
 
-    private int dp(int i, int[] nums) {
+    public int dp(int i, int[] nums) {
         if (i == 0) {
-            return nums[0];
+            return nums[i];
         }
-
         if (i == 1) {
             return Math.max(nums[0], nums[1]);
         }
@@ -18,7 +17,7 @@ class Solution {
             return memo.get(i);
         }
 
-        memo.put(i, Math.max(dp(i - 1, nums), dp(i - 2, nums) + nums[i]));
+        memo.put(i, Math.max(dp(i - 2, nums) + nums[i], dp(i - 1, nums)));
         return memo.get(i);
     }
 }
