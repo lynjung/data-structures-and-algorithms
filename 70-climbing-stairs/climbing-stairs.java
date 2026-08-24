@@ -1,5 +1,11 @@
 class Solution {
+    Map<Integer, Integer> memo = new HashMap<>();
+
     public int climbStairs(int n) {
+        return dp(n);
+    }
+
+    public int dp(int n) {
         if (n == 1) {
             return 1;
         }
@@ -7,14 +13,10 @@ class Solution {
             return 2;
         }
 
-        int pprev = 1;
-        int prev = 2;
-
-        for (int i = 2; i < n; i++) {
-            int curr = pprev + prev;
-            pprev = prev;
-            prev = curr;
+        if (memo.containsKey(n)) {
+            return memo.get(n);
         }
-        return prev;
+        memo.put(n, dp(n - 2) + dp(n - 1));
+        return memo.get(n);
     }
 }
