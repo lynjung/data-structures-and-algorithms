@@ -1,26 +1,37 @@
 class Solution {
+    Map<Integer, Integer> memo = new HashMap<>();
+
     public int coinChange(int[] coins, int amount) {
+        return dp(coins, amount);
+    }
 
-        int[] dp = new int[amount + 1];
-
-        for (int i = 1; i <= amount; i++) {
-            dp[i] = amount + 1;
-        } 
-
-        dp[0] = 0;
-
-        for (int i = 1; i <= amount; i++) {
-            for (int coin : coins) {
-                if (coin <= i) {
-                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
-                }
-            }
+    public int dp(int[] coins, int amount) {
+        if (amount == 0) {
+            return 0;
         }
-        if (dp[amount] > amount) {
+        if (amount < 0) {
             return -1;
         }
-        else {
-            return dp[amount];
+
+        if (memo.containsKey(amount)) {
+            return memo.get(amount);
         }
+
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < coins.length; i++) {
+            int result = dp(coins, amount - coins[i]);
+            if (result != -1) {
+                min = Math.min(min, 1 + result);
+            }
+        }
+
+        if (min == Integer.MAX_VALUE) {
+            memo.put(amount, -1);
+        } else {
+            memo.put(amount, min);
+        }
+
+        return memo.get(amount);
     }
 }
