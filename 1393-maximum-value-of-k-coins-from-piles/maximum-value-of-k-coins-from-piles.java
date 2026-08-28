@@ -1,36 +1,27 @@
 class Solution {
-    int n;
-    int[][] memo;
-    List<List<Integer>> piles;
-    
     public int maxValueOfCoins(List<List<Integer>> piles, int k) {
-        n = piles.size();
-        memo = new int[n][k + 1];
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(memo[i], -1);
+        int n = piles.size();
+        int[][] dp = new int[n + 1][k + 1];
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int remain = 1; remain <= k; remain++) {
+
+                // skip this pile, will later see if taking coins is better
+                dp[i][remain] = dp[i + 1][remain];
+
+                // total value of coins we have taken from curr pile
+                int curr = 0;
+
+                // j is index; until min of remain & curr pile coin #
+                for (int j = 0; j < Math.min(remain, piles.get(i).size()); j++) {
+                    curr += piles.get(i).get(j);
+
+                    // curr coins value + best value i can get from later piles
+                    dp[i][remain] = Math.max(dp[i][remain], curr + dp[i + 1][remain - j - 1]);
+                }
+            }
         }
-        
-        this.piles = piles;
-        return dp(0, k);
-    }
-    
-    public int dp(int i, int remain) {
-        if (i == n || remain == 0) {
-            return 0;
-        }
-        
-        if (memo[i][remain] != -1) {
-            return memo[i][remain];
-        }
-        
-        int ans = dp(i + 1, remain);
-        int curr = 0;
-        for (int j = 0; j < Math.min(remain, piles.get(i).size()); j++) {
-            curr += piles.get(i).get(j);
-            ans = Math.max(ans, curr + dp(i + 1, remain - j - 1));
-        }
-        
-        memo[i][remain] = ans;
-        return ans;
+
+        return dp[0][k];
     }
 }
