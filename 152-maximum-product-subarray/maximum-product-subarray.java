@@ -10,7 +10,6 @@ class Solution {
             curMin = Math.min(nums[i], Math.min(temp, curMin * nums[i]));
             ans = Math.max(ans, curMax);
         }
-
         return ans;
     }
 }
