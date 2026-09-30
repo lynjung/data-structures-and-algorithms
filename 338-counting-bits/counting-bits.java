@@ -1,15 +1,18 @@
 class Solution {
     public int[] countBits(int n) {
-        
         int[] ans = new int[n + 1];
-        ans[0] = 0; // not needed bc 0 by default
-        int offset = 1;
 
-        for (int i = 1; i < n + 1; i++) {
-            if (i == (2 * offset)) {
-                offset = i;
+        for (int i = 0; i < n + 1; i++) {
+            int count = 0;
+            int num = i;
+
+            while (num != 0) {
+                if ((num & 1) == 1) {
+                    count++;
+                }
+                num = num >> 1;
             }
-            ans[i] = 1 + ans[i - offset];
+            ans[i] = count;
         }
         return ans;
     }
